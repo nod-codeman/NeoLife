@@ -29,6 +29,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>))); // setup for generic repo
             services.AddControllers();
             // configure connection string
             services.AddDbContext<StoreContext>(x => 
