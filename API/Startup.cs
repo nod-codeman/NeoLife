@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Helpers;
+using AutoMapper;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +32,7 @@ namespace API
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>))); // setup for generic repo
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             // configure connection string
             services.AddDbContext<StoreContext>(x => 
@@ -47,6 +50,7 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
