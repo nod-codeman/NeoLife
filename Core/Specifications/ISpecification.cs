@@ -8,5 +8,7 @@ namespace Core.Specifications
     {
          Expression<Func<T, bool>> Criteria {get; } // checks against the criteria
          List<Expression<Func<T, object>>> Includes {get; } // checks for all includes appended
+         Expression<Func<T, object>> OrderBy {get; }
+         Expression<Func<T, object>> OrderByDescending {get; }
     }
 }

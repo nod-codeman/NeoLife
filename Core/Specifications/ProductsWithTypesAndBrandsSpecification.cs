@@ -7,10 +7,28 @@ namespace Core.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
-        public ProductsWithTypesAndBrandsSpecification()
+        public ProductsWithTypesAndBrandsSpecification(string sort)
         {
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
+            AddOrderBy(x => x.Name);
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                // sort products by price Asc and Desc. And order by product name
+                switch (sort)
+                {
+                    case "priceAsc":
+                        AddOrderBy(p => p.Price);
+                        break;
+                    case "priceDesc":
+                        AddOrderByDescending(p => p.Price);
+                        break;
+                    default:
+                        AddOrderBy(n => n.Name);
+                        break;
+                }
+            }
         }
 
         // get product that matches the passed id, also pass the defined includes
