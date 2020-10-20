@@ -23,7 +23,7 @@ export class ShopService {
     }
 
     if (shopParams.typeId !== 0) {
-      params = params.append('brandId', shopParams.typeId.toString());
+      params = params.append('typeId', shopParams.typeId.toString());
     }
 
     if (shopParams.search) {
